@@ -1,0 +1,24 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended"],
+  "jsRules": {},
+  "rules": {
+    "eofline": false,
+    "quotemark": [true, "single"],
+    "semicolon": [true, "never"],
+    "no-console": false,
+    "arrow-parens": [true, "ban-single-arg-parens"],
+    "trailing-comma": false,
+    "object-literal-sort-keys": false,
+    "ordered-imports": false,
+    "curly": [true, "ignore-same-line"],
+    "member-access": false,
+    "variable-name": false,
+    "align": false,
+    "interface-name": true,
+    "array-type": false
+  },
+  "linterOptions": {
+    "exclude": ["node_modules/**/*.ts"]
+  }
+}

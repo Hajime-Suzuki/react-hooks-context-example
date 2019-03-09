@@ -1,0 +1,10 @@
+{
+  "todoItems": [
+    {
+      "id": "c5bba5e3-5cf4-43ac-b502-6bc1bc8b4824",
+      "name": "something",
+      "done": false,
+      "createdAt": 1552144082636
+    }
+  ]
+}
