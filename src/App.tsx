@@ -1,10 +1,10 @@
 import React from 'react'
-import TodoList from './todoLists'
+import Todos from './Todos'
 
 const App = () => {
   return (
     <div style={{ textAlign: 'center' }}>
-      <TodoList />
+      <Todos />
     </div>
   )
 }

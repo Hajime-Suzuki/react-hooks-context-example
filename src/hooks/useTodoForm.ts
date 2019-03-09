@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+export type UseTodoFormProps = ReturnType<typeof useForm>
 export const useForm = (initial: string) => {
   const [formName, setName] = useState(initial)
 
