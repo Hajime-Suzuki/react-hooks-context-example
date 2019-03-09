@@ -1,18 +1,12 @@
 import { Button, TextField } from '@material-ui/core'
-import React from 'react'
+import React, { useContext } from 'react'
 import { useForm } from '../hooks/useTodoForm'
-import { UseTodoItemsProps } from '../hooks/useTodoItems'
+import { TodoContext } from '../contexts/todoContext'
 
-interface TodoFormProps {
-  value?: string
-  addItem: UseTodoItemsProps['addItem']
-}
+export const AddTodoForm: React.FC = () => {
+  const { formName, handleChange, clearForm } = useForm('')
+  const { addItem } = useContext(TodoContext)
 
-export const AddTodoForm: React.FC<TodoFormProps> = ({
-  addItem,
-  value = ''
-}) => {
-  const { formName, handleChange, clearForm } = useForm(value)
   return (
     <form onSubmit={e => e.preventDefault()}>
       <TextField label='name' value={formName} onChange={handleChange} />

@@ -1,8 +1,9 @@
 import { Button, Typography } from '@material-ui/core'
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useContext } from 'react'
 import { AddTodoForm } from './components/TodoForms'
 import { TodoList } from './components/TodoList'
-import { useTodoItems } from './hooks/useTodoItems'
+import { SelectedTodoProvider } from './contexts/selectedTodoContext'
+import { TodoContext, TodoProvider } from './contexts/todoContext'
 
 export interface Todo {
   id: string
@@ -14,8 +15,7 @@ export interface Todo {
 const Spacer = () => <div style={{ margin: '2em' }} />
 
 const Todos: React.FC<{}> = () => {
-  const { todos, editItem, addItem, removeDone, loading } = useTodoItems()
-  const [selectedTodoId, setSelectedTodoId] = useState<Todo['id'] | null>(null)
+  const { todos, removeDone, loading } = useContext(TodoContext)
   const isNoItem = !loading && !todos.length
 
   return (
@@ -29,12 +29,7 @@ const Todos: React.FC<{}> = () => {
       <div style={{ width: 500, margin: 'auto' }}>
         {!loading && !isNoItem && (
           <Fragment>
-            <TodoList
-              todos={todos}
-              editItem={editItem}
-              selectedTodoId={selectedTodoId}
-              setSelectedTodoId={setSelectedTodoId}
-            />
+            <TodoList />
             <Spacer />
             <Button color='secondary' variant='outlined' onClick={removeDone}>
               Remove Finished
@@ -42,10 +37,16 @@ const Todos: React.FC<{}> = () => {
           </Fragment>
         )}
         <Spacer />
-        {!loading && <AddTodoForm addItem={addItem} />}
+        {!loading && <AddTodoForm />}
       </div>
     </Fragment>
   )
 }
 
-export default Todos
+export default () => (
+  <TodoProvider>
+    <SelectedTodoProvider>
+      <Todos />
+    </SelectedTodoProvider>
+  </TodoProvider>
+)

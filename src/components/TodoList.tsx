@@ -1,29 +1,19 @@
-import { UseTodoItemsProps } from '../hooks/useTodoItems'
-import { Todo } from '../Todos'
 import {
+  Button,
+  Checkbox,
   List,
   ListItem,
   ListItemText,
-  Typography,
-  Checkbox,
-  Button
+  Typography
 } from '@material-ui/core'
+import React, { useContext } from 'react'
+import { SelectedTodoContext } from '../contexts/selectedTodoContext'
+import { TodoContext } from '../contexts/todoContext'
 import { EditTodoForm } from './TodoForms'
-import React from 'react'
 
-interface TodoListProps {
-  todos: UseTodoItemsProps['todos']
-  editItem: UseTodoItemsProps['editItem']
-  selectedTodoId: Todo['id'] | null
-  setSelectedTodoId: React.Dispatch<React.SetStateAction<string | null>>
-}
-
-export const TodoList: React.FC<TodoListProps> = ({
-  todos,
-  editItem,
-  selectedTodoId,
-  setSelectedTodoId
-}) => {
+export const TodoList: React.FC = () => {
+  const { todos, editItem } = useContext(TodoContext)
+  const { selectedTodoId, setSelectedTodoId } = useContext(SelectedTodoContext)
   return (
     <List>
       {todos.map(({ id, done, name }) => {
@@ -35,7 +25,7 @@ export const TodoList: React.FC<TodoListProps> = ({
                 value={name}
                 onSubmit={async (name: string) => {
                   await editItem(id, { name })
-                  setSelectedTodoId('asht')
+                  setSelectedTodoId(null)
                 }}
               />
             )}

@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Todo } from '../Todos'
+import { useEffect, useState } from 'react'
 import uuid from 'uuid/v4'
+import { Todo } from '../Todos'
 
 const URL = 'http://localhost:4000/todoItems'
 const getTimestamp = () => new Date().getTime()
