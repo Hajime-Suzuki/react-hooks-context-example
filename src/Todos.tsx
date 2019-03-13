@@ -20,7 +20,7 @@ const Todos: React.FC<{}> = () => {
 
   return (
     <Fragment>
-      <Typography variant='h2'>Todo Lists</Typography>
+      <Typography variant='h2'>Todos</Typography>
       <Spacer />
 
       {loading && <Typography>loading...</Typography>}
